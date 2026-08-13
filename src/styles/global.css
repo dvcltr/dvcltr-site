@@ -414,8 +414,6 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
 }
 .course-pill.done { background: var(--pill-done-bg); color: var(--pill-done-fg); border-color: var(--pill-done-line); }
 .course-pill.current { background: var(--orange); color: var(--paper); border-color: var(--orange-dark); box-shadow: 4px 4px 0 var(--shadow-hard); }
-.progress-note { margin: 16px 0 0; color: var(--muted); }
-
 .page-heading { padding: clamp(50px, 7vw, 90px) 0 34px; }
 .archive-list { margin-top: 24px; }
 
@@ -466,8 +464,6 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
 }
 .post-content code { border-radius: 5px; background: var(--badge-bg); color: var(--badge-fg); padding: 2px 5px; }
 .post-content pre code { background: transparent; color: inherit; padding: 0; }
-
-.footer { padding: 34px 0 48px; color: var(--muted); font-size: 0.88rem; }
 
 @media (max-width: 900px) {
   .hero,
