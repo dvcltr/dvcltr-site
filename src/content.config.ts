@@ -13,4 +13,16 @@ const status = defineCollection({
   }),
 });
 
-export const collections = { status };
+const projectStatus = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/project-status' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    project: z.string(),
+    summary: z.string(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { status, projectStatus };

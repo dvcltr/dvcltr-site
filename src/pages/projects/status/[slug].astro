@@ -1,9 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('status', ({ data }) => !data.draft);
+  const posts = await getCollection('projectStatus', ({ data }) => !data.draft);
   return posts.map((post) => ({ params: { slug: post.id.replace(/\.md$/, '') }, props: { post } }));
 }
 
@@ -14,10 +14,10 @@ const { Content } = await render(post);
 <BaseLayout title={`${post.data.title} | dvcltr`} description={post.data.summary}>
   <section class="post-shell">
     <aside class="post-side">
-      <h2>School status</h2>
+      <h2>Project status</h2>
       <p>
         {post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
-        {post.data.course ? ` · ${post.data.course}` : ''}
+        {post.data.project ? ` · ${post.data.project}` : ''}
       </p>
       <div class="badges">
         {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
@@ -25,7 +25,7 @@ const { Content } = await render(post);
     </aside>
 
     <article class="post">
-      <p class="eyebrow">Public progress update</p>
+      <p class="eyebrow">Personal project update</p>
       <h1>{post.data.title}</h1>
       <p class="summary">{post.data.summary}</p>
       <div class="post-content">

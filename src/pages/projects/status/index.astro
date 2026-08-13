@@ -1,25 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('status'))
+const posts = (await getCollection('projectStatus'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="School Status | dvcltr">
+<BaseLayout title="Project Status | dvcltr" description="Personal project status updates for dvcltr site work, Cipherstone Lab, GitHub, and Vercel deployments.">
   <section class="page-heading">
-    <p class="eyebrow">School status archive</p>
-    <h1>School weekly status</h1>
-    <p>Public, privacy-safe updates on coursework, cybersecurity labs, and current school learning.</p>
+    <p class="eyebrow">Project status archive</p>
+    <h1>Personal project status</h1>
+    <p>Updates on personal builds, site work, GitHub workflow, Vercel deployments, and project milestones.</p>
   </section>
 
   <div class="status-list archive-list">
     {posts.map((post) => (
-      <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
+      <a class="status-item" href={`/projects/status/${post.id.replace(/\.md$/, '')}/`}>
         <div class="status-meta">
           {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
-          {post.data.course ? ` · ${post.data.course}` : ''}
+          {post.data.project ? ` · ${post.data.project}` : ''}
         </div>
         <h2>{post.data.title}</h2>
         <p>{post.data.summary}</p>

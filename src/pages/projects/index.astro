@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projectPosts = (await getCollection('projectStatus'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const latestProject = projectPosts[0];
+---
+
+<BaseLayout title="Personal Projects | dvcltr" description="Personal projects, cyber range builds, and project status updates from dvcltr.">
+  <section class="page-heading">
+    <p class="eyebrow">Personal projects</p>
+    <h1>Project work outside the classroom.</h1>
+    <p>Side projects, build notes, and experiments that connect coursework with practical hands-on work.</p>
+  </section>
+
+  <section class="personal-projects page-section-tight">
+    <article class="project-feature">
+      <div>
+        <p class="status-meta">Featured project</p>
+        <h3>Cipherstone Lab</h3>
+        <p>
+          Cipherstone Lab is a browser-based cyber range built around a fictional university training
+          scenario. It uses a terminal-style interface to practice enumeration, host discovery,
+          credential reasoning, basic Linux navigation, and end-of-scenario debriefing.
+        </p>
+        <div class="project-tags" aria-label="Cipherstone Lab topics">
+          <span>React / Next.js</span>
+          <span>Terminal UI</span>
+          <span>Cyber range</span>
+          <span>Training scenario</span>
+        </div>
+      </div>
+      <div class="project-actions">
+        <a class="btn primary" href="https://cipherstone-cyber-range.vercel.app" target="_blank" rel="noreferrer">Open Cipherstone Lab</a>
+        <a class="btn secondary" href="https://github.com/dvcltr/cipherstone-cyber-range" target="_blank" rel="noreferrer">View source</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="page-section-tight">
+    <div class="section-head">
+      <h2>Project status</h2>
+      <p>Weekly-style updates for site work, personal builds, GitHub changes, and deployments.</p>
+    </div>
+    <div class="status-list archive-list">
+      {projectPosts.map((post) => (
+        <a class="status-item" href={`/projects/status/${post.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">
+            {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+            {post.data.project ? ` · ${post.data.project}` : ''}
+          </div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.summary}</p>
+          <div class="badges">
+            {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+    {latestProject && (
+      <p class="archive-note"><a href="/projects/status/">View the personal project status archive</a>.</p>
+    )}
+  </section>
+</BaseLayout>

@@ -2,60 +2,81 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('status'))
+const schoolPosts = (await getCollection('status'))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 6);
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const projectPosts = (await getCollection('projectStatus'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const latestSchool = schoolPosts[0];
+const latestProject = projectPosts[0];
 ---
 
 <BaseLayout>
   <section class="hero hero-simple">
     <div class="hero-text">
-      <p class="eyebrow">Weekly learning log</p>
-      <h1>A weekly log of projects, labs, and lessons learned.</h1>
+      <p class="eyebrow">Learning and project log</p>
+      <h1>A lighter homepage with two living logs.</h1>
       <p>
-        Straightforward public updates on completed coursework, cybersecurity topics practiced,
-        and what I am learning next.
+        Public, privacy-safe updates split between school progress and personal projects — with
+        the latest notes from each side surfaced here.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" href="#status">Read latest updates</a>
-        <a class="btn secondary" href="/status/">View full archive</a>
+        <a class="btn primary" href="#updates">Read latest updates</a>
+        <a class="btn secondary" href="/projects/">View personal projects</a>
       </div>
     </div>
   </section>
 
-  <section id="degree" class="degree-progress">
+  <section id="school" class="school-overview">
     <div class="section-head">
-      <h2>Degree progress</h2>
+      <h2>School progress</h2>
+      <p>Degree progress, lab hardware, and school weekly statuses stay grouped together.</p>
     </div>
 
-    <div class="progress-card">
-      <div class="progress-summary">
-        <span class="status-meta">Completed courses</span>
-        <strong>3 / 10</strong>
-      </div>
-      <div class="degree-bar" aria-label="Degree progress: 3 courses completed, CYBR-508 in progress, 6 courses upcoming">
-        <span class="degree-fill completed" style="width: 30%;"></span>
-        <span class="degree-fill current" style="left: 30%; width: 10%;"></span>
-      </div>
-      <div class="course-track" aria-label="CYBR course sequence">
-        <span class="course-pill done">CYBR-501</span>
-        <span class="course-pill done">CYBR-502</span>
-        <span class="course-pill upcoming">CYBR-503</span>
-        <span class="course-pill upcoming">CYBR-504</span>
-        <span class="course-pill done">CYBR-506</span>
-        <span class="course-pill current">CYBR-508</span>
-        <span class="course-pill upcoming">CYBR-510</span>
-        <span class="course-pill upcoming">CYBR-512</span>
-        <span class="course-pill upcoming">CYBR-514</span>
-        <span class="course-pill upcoming">CYBR-516</span>
-      </div>
+    <div class="overview-grid">
+      <article class="progress-card">
+        <div class="progress-summary">
+          <span class="status-meta">Completed courses</span>
+          <strong>3 / 10</strong>
+        </div>
+        <div class="degree-bar" aria-label="Degree progress: 3 courses completed, CYBR-508 in progress, 6 courses upcoming">
+          <span class="degree-fill completed" style="width: 30%;"></span>
+          <span class="degree-fill current" style="left: 30%; width: 10%;"></span>
+        </div>
+        <div class="course-track" aria-label="CYBR course sequence">
+          <span class="course-pill done">CYBR-501</span>
+          <span class="course-pill done">CYBR-502</span>
+          <span class="course-pill upcoming">CYBR-503</span>
+          <span class="course-pill upcoming">CYBR-504</span>
+          <span class="course-pill done">CYBR-506</span>
+          <span class="course-pill current">CYBR-508</span>
+          <span class="course-pill upcoming">CYBR-510</span>
+          <span class="course-pill upcoming">CYBR-512</span>
+          <span class="course-pill upcoming">CYBR-514</span>
+          <span class="course-pill upcoming">CYBR-516</span>
+        </div>
+      </article>
+
+      {latestSchool && (
+        <a class="status-item featured-status" href={`/status/${latestSchool.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">Latest school status</div>
+          <h2>{latestSchool.data.title}</h2>
+          <p>{latestSchool.data.summary}</p>
+          <div class="badges">
+            {latestSchool.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+          </div>
+        </a>
+      )}
     </div>
   </section>
 
-  <section id="technology" class="technology-stack">
+  <section id="technology" class="technology-stack compact-stack">
     <div class="section-head">
       <h2>Technology stack</h2>
+      <p>The current school and home-lab setup used for coursework and practice.</p>
     </div>
 
     <div class="tech-panel">
@@ -128,9 +149,10 @@ const posts = (await getCollection('status'))
     </div>
   </section>
 
-  <section id="personal-projects" class="personal-projects">
+  <section id="projects" class="personal-projects">
     <div class="section-head">
       <h2>Personal projects</h2>
+      <p>Side projects and build logs live separately from school coursework.</p>
     </div>
 
     <article class="project-feature">
@@ -151,62 +173,38 @@ const posts = (await getCollection('status'))
         </div>
       </div>
       <div class="project-actions">
-        <a class="btn primary" href="https://cipherstone-cyber-range.vercel.app" target="_blank" rel="noreferrer">Open Cipherstone Lab</a>
-        <a class="btn secondary" href="https://github.com/dvcltr/cipherstone-cyber-range" target="_blank" rel="noreferrer">View source</a>
+        <a class="btn primary" href="/projects/">View projects</a>
+        <a class="btn secondary" href="https://cipherstone-cyber-range.vercel.app" target="_blank" rel="noreferrer">Open Cipherstone Lab</a>
       </div>
     </article>
   </section>
 
-  <section id="projects">
+  <section id="updates">
     <div class="section-head">
-      <h2>Project areas</h2>
+      <h2>Latest from both logs</h2>
+      <p>Homepage previews only the newest school update and newest personal project update.</p>
     </div>
-    <div class="grid">
-      <div class="card">
-        <h3>Security labs</h3>
-        <p>Hands-on work with networking, monitoring, access control, and defensive tools.</p>
-      </div>
-      <div class="card">
-        <h3>Wargame practice</h3>
-        <p>Command-line and web security exercises focused on careful enumeration and problem solving.</p>
-      </div>
-      <div class="card">
-        <h3>Technical documentation</h3>
-        <p>Short writeups that explain what I practiced, what I learned, and what comes next.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning">
-    <div class="section-head">
-      <h2>Currently learning</h2>
-    </div>
-    <div class="card">
-      <ul>
-        <li>Secure network engineering fundamentals</li>
-        <li>Intrusion detection and system monitoring</li>
-        <li>VPN security, logging, and visibility</li>
-        <li>Clear public-facing technical summaries</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="status">
-    <div class="section-head">
-      <h2>Latest weekly status</h2>
-      <p>Showing the latest six weekly status updates. <a href="/status/">View the full archive</a>.</p>
-    </div>
-    <div class="status-list">
-      {posts.map((post) => (
-        <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
-          <div class="status-meta">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.summary}</p>
+    <div class="status-list paired-status-list">
+      {latestSchool && (
+        <a class="status-item" href={`/status/${latestSchool.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">School weekly status · {latestSchool.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</div>
+          <h2>{latestSchool.data.title}</h2>
+          <p>{latestSchool.data.summary}</p>
           <div class="badges">
-            {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+            {latestSchool.data.tags.map((tag) => <span class="badge">{tag}</span>)}
           </div>
         </a>
-      ))}
+      )}
+      {latestProject && (
+        <a class="status-item" href={`/projects/status/${latestProject.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">Personal project status · {latestProject.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</div>
+          <h2>{latestProject.data.title}</h2>
+          <p>{latestProject.data.summary}</p>
+          <div class="badges">
+            {latestProject.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+          </div>
+        </a>
+      )}
     </div>
   </section>
 </BaseLayout>
