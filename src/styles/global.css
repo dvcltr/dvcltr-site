@@ -507,6 +507,57 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
   font-weight: 800;
 }
 
+.personal-projects { margin-top: clamp(36px, 6vw, 72px); }
+.project-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(20px, 4vw, 42px);
+  align-items: end;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(189, 90, 43, 0.1), transparent 44%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  padding: clamp(24px, 4vw, 36px);
+}
+.project-feature h3 {
+  margin: 12px 0 14px;
+  color: var(--heading);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+.project-feature p:not(.status-meta) {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.project-tags span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--badge-bg);
+  color: var(--badge-fg);
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .page-heading { padding: clamp(50px, 7vw, 90px) 0 34px; }
 .archive-list { margin-top: 24px; }
 
@@ -560,7 +611,9 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
 
 @media (max-width: 900px) {
   .hero,
+  .project-feature,
   .post-shell { grid-template-columns: 1fr; }
+  .project-actions { justify-content: flex-start; }
   .tech-grid,
   .status-list { grid-template-columns: 1fr 1fr; }
   .course-track { grid-template-columns: repeat(5, minmax(0, 1fr)); }
