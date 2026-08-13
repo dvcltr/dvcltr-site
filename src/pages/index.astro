@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TerminalWindow from '../components/TerminalWindow.astro';
 
 const posts = (await getCollection('status'))
   .filter((post) => !post.data.draft)
@@ -10,17 +9,41 @@ const posts = (await getCollection('status'))
 ---
 
 <BaseLayout>
-  <TerminalWindow label="dvcltr.com / school progress">
-    <section class="hero">
-      <p class="prompt">weekly_status --public</p>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Weekly learning log</p>
       <h1>A weekly log of projects, labs, and lessons learned.</h1>
       <p>
-        Terminal-style updates on completed coursework, cybersecurity topics practiced,
+        Straightforward public updates on completed coursework, cybersecurity topics practiced,
         and what I am learning next.
       </p>
-    </section>
+      <div class="hero-actions">
+        <a class="btn primary" href="#status">Read latest updates</a>
+        <a class="btn secondary" href="/status/">View full archive</a>
+      </div>
+    </div>
 
-    <h2 id="projects" class="command-heading">completed_this_week</h2>
+    <aside class="hero-panel" aria-label="Learning overview">
+      <div class="trail-card">
+        <h2>Learning map</h2>
+        <div class="trail-item">Secure network engineering</div>
+        <div class="trail-item">Intrusion detection and monitoring</div>
+        <div class="trail-item">VPN security and visibility</div>
+        <div class="trail-item">Hands-on practice and documentation</div>
+      </div>
+      <div class="ticket">
+        <small>current archive</small>
+        <strong>{posts.length} recent updates</strong>
+        <small>reviewed before publishing</small>
+      </div>
+    </aside>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Project areas</h2>
+      <p>Hands-on coursework, security practice, and short public-facing summaries.</p>
+    </div>
     <div class="grid">
       <div class="card">
         <h3>Security labs</h3>
@@ -35,9 +58,15 @@ const posts = (await getCollection('status'))
         <p>Short writeups that explain what I practiced, what I learned, and what comes next.</p>
       </div>
     </div>
+  </section>
 
-    <h2 id="learning" class="command-heading">cat currently_learning.txt</h2>
-    <div class="card">
+  <section id="learning" class="learning-grid">
+    <div class="note-panel">
+      <h2>Currently learning</h2>
+      <p>Secure network engineering, monitoring, VPN visibility, and public-safe technical communication.</p>
+    </div>
+    <div class="focus-panel">
+      <h2>Focus areas</h2>
       <ul>
         <li>Secure network engineering fundamentals</li>
         <li>Intrusion detection and system monitoring</li>
@@ -45,9 +74,13 @@ const posts = (await getCollection('status'))
         <li>Clear public-facing technical summaries</li>
       </ul>
     </div>
+  </section>
 
-    <h2 class="command-heading">ls status/</h2>
-    <p class="section-note">Showing the latest six weekly status updates. <a href="/status/">View the full archive</a>.</p>
+  <section id="status">
+    <div class="section-head">
+      <h2>Latest weekly status</h2>
+      <p>Showing the latest six weekly status updates. <a href="/status/">View the full archive</a>.</p>
+    </div>
     <div class="status-list">
       {posts.map((post) => (
         <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
@@ -60,5 +93,5 @@ const posts = (await getCollection('status'))
         </a>
       ))}
     </div>
-  </TerminalWindow>
+  </section>
 </BaseLayout>

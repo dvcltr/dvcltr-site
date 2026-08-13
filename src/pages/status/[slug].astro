@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TerminalWindow from '../../components/TerminalWindow.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('status', ({ data }) => !data.draft);
@@ -13,21 +12,25 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={`${post.data.title} | dvcltr`} description={post.data.summary}>
-  <TerminalWindow label={`/status/${post.id.replace(/\.md$/, '')}`}>
-    <article class="post">
-      <p class="prompt">open {post.id}</p>
-      <h1>{post.data.title}</h1>
-      <div class="status-meta">
+  <section class="post-shell">
+    <aside class="post-side">
+      <h2>Weekly status</h2>
+      <p>
         {post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
         {post.data.course ? ` · ${post.data.course}` : ''}
-      </div>
-      <p class="summary">{post.data.summary}</p>
-      <div class="badges" style="margin-bottom: 24px;">
+      </p>
+      <div class="badges">
         {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
       </div>
+    </aside>
+
+    <article class="post">
+      <p class="eyebrow">Public progress update</p>
+      <h1>{post.data.title}</h1>
+      <p class="summary">{post.data.summary}</p>
       <div class="post-content">
         <Content />
       </div>
     </article>
-  </TerminalWindow>
+  </section>
 </BaseLayout>

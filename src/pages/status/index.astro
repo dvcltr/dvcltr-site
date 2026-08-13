@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TerminalWindow from '../../components/TerminalWindow.astro';
 
 const posts = (await getCollection('status'))
   .filter((post) => !post.data.draft)
@@ -9,24 +8,25 @@ const posts = (await getCollection('status'))
 ---
 
 <BaseLayout title="Weekly Status | dvcltr">
-  <TerminalWindow label="/status">
-    <section class="hero">
-      <p class="prompt">ls status/</p>
-      <h1>Weekly status</h1>
-      <p>Public, privacy-safe updates on school progress, completed projects, and current learning.</p>
-    </section>
+  <section class="page-heading">
+    <p class="eyebrow">Status archive</p>
+    <h1>Weekly status</h1>
+    <p>Public, privacy-safe updates on school progress, completed projects, and current learning.</p>
+  </section>
 
-    <div class="status-list" style="margin-top: 34px;">
-      {posts.map((post) => (
-        <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
-          <div class="status-meta">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · {post.data.course}</div>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.summary}</p>
-          <div class="badges">
-            {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
-          </div>
-        </a>
-      ))}
-    </div>
-  </TerminalWindow>
+  <div class="status-list archive-list">
+    {posts.map((post) => (
+      <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
+        <div class="status-meta">
+          {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+          {post.data.course ? ` · ${post.data.course}` : ''}
+        </div>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.summary}</p>
+        <div class="badges">
+          {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+        </div>
+      </a>
+    ))}
+  </div>
 </BaseLayout>

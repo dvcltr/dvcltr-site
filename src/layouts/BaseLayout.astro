@@ -23,21 +23,24 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;650;750&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div class="site-shell">
       <nav class="nav" aria-label="Main navigation">
-        <a class="brand" href="/">dvcltr</a>
+        <a class="brand" href="/">
+          <span class="brand-mark">dv</span>
+          <span>dvcltr<small>school progress</small></span>
+        </a>
         <div class="nav-links">
-          <a href="/status/">weekly status</a>
-          <a href="/#projects">projects</a>
-          <a href="/#learning">learning</a>
+          <a href="/status/">Status</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#learning">Learning</a>
         </div>
       </nav>
       <slot />
       <footer class="footer">
-        <span>student@dvcltr:~$ logout</span>
+        <span>Public weekly progress notes on projects, labs, and lessons learned.</span>
       </footer>
     </div>
   </body>
