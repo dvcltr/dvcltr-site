@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalWindow from '../../components/TerminalWindow.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('status', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id.replace(/\.md$/, '') }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | dvcltr`} description={post.data.summary}>
+  <TerminalWindow label={`/status/${post.id.replace(/\.md$/, '')}`}>
+    <article class="post">
+      <p class="prompt">open {post.id}</p>
+      <h1>{post.data.title}</h1>
+      <div class="status-meta">
+        {post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        {post.data.course ? ` · ${post.data.course}` : ''}
+      </div>
+      <p class="summary">{post.data.summary}</p>
+      <div class="badges" style="margin-bottom: 24px;">
+        {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+      </div>
+      <div class="post-content">
+        <Content />
+      </div>
+    </article>
+  </TerminalWindow>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = 'public progress log' } = Astro.props;
+---
+
+<section class="terminal-window">
+  <div class="window-bar">
+    <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <span>{label}</span>
+  </div>
+  <div class="terminal-body">
+    <slot />
+  </div>
+</section>

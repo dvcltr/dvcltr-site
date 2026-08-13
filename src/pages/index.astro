@@ -1,17 +1,63 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalWindow from '../components/TerminalWindow.astro';
 
+const posts = (await getCollection('status'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <TerminalWindow label="dvcltr.com / school progress">
+    <section class="hero">
+      <p class="prompt">weekly_status --public</p>
+      <h1>School progress, without oversharing.</h1>
+      <p>
+        A weekly terminal-style log of projects completed, cybersecurity topics practiced,
+        and what I am learning next.
+      </p>
+    </section>
+
+    <h2 id="projects" class="command-heading">completed_this_week</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Security labs</h3>
+        <p>Hands-on work with networking, monitoring, access control, and defensive tools.</p>
+      </div>
+      <div class="card">
+        <h3>Wargame practice</h3>
+        <p>Command-line and web security exercises focused on careful enumeration and problem solving.</p>
+      </div>
+      <div class="card">
+        <h3>Technical documentation</h3>
+        <p>Short writeups that explain what I practiced, what I learned, and what comes next.</p>
+      </div>
+    </div>
+
+    <h2 id="learning" class="command-heading">cat currently_learning.txt</h2>
+    <div class="card">
+      <ul>
+        <li>Secure network engineering fundamentals</li>
+        <li>Intrusion detection and system monitoring</li>
+        <li>VPN security, logging, and visibility</li>
+        <li>Clear public-facing technical summaries</li>
+      </ul>
+    </div>
+
+    <h2 class="command-heading">ls status/</h2>
+    <div class="status-list">
+      {posts.map((post) => (
+        <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.summary}</p>
+          <div class="badges">
+            {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+  </TerminalWindow>
+</BaseLayout>
