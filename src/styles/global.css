@@ -446,8 +446,17 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
   text-transform: uppercase;
 }
 .post-content h2 code { color: inherit; background: transparent; padding: 0; }
+.post-content h3 {
+  margin: 26px 0 6px;
+  color: var(--heading);
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
 .post-content p,
 .post-content li { color: var(--muted); }
+.post-content strong { color: var(--text); font-weight: 750; }
 .post-content pre {
   overflow: auto;
   border-radius: 16px;

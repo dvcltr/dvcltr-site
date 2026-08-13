@@ -7,45 +7,39 @@ tags: ["CYBR-508", "Snort", "Intrusion Detection", "Application Security", "Warg
 draft: false
 ---
 
-## `weekly_status --public`
-
 This week focused on upper-layer security concerns and intrusion detection concepts.
 
-```text
-student@dvcltr:~$ status --week module-05
-```
-
-## `./completed_this_week`
+## Completed this week
 
 - Continued wargame practice with Bandit or Natas.
 - Worked on an intrusion detection lab using Snort concepts.
 - Reviewed threats and protections for the session, presentation, and application layers.
 - Added module vocabulary through the glossary activity.
 
-## `ls projects/`
+## Projects
 
-```text
-[COMPLETED] Snort Intrusion Detection Lab
-Focus: Intrusion Detection / Network Monitoring
-Summary: Practiced with intrusion detection concepts and how monitoring tools help identify suspicious activity.
-What I learned: Detection is a key part of defense because it helps teams see and investigate activity that prevention alone may not stop.
-```
+### Snort Intrusion Detection Lab
+**Focus:** Intrusion Detection / Network Monitoring
 
-```text
-[COMPLETED] Upper OSI Layer Security Discussion
-Focus: Session, Presentation, and Application Layer Security
-Summary: Reviewed recent cybersecurity themes and protections related to upper-layer services and applications.
-What I learned: Application-facing systems often carry business risk, so protections need to address both technical and operational concerns.
-```
+**Summary:** Practiced with intrusion detection concepts and how monitoring tools help identify suspicious activity.
 
-```text
-[COMPLETED] Wargame Practice
-Focus: Problem Solving / Security Fundamentals
-Summary: Continued using wargames to practice investigation and command-line thinking.
-What I learned: Consistent practice helps build confidence with unfamiliar systems and security puzzles.
-```
+**What I learned:** Detection is a key part of defense because it helps teams see and investigate activity that prevention alone may not stop.
 
-## `cat currently_learning.txt`
+### Upper OSI Layer Security Discussion
+**Focus:** Session, Presentation, and Application Layer Security
+
+**Summary:** Reviewed recent cybersecurity themes and protections related to upper-layer services and applications.
+
+**What I learned:** Application-facing systems often carry business risk, so protections need to address both technical and operational concerns.
+
+### Wargame Practice
+**Focus:** Problem Solving / Security Fundamentals
+
+**Summary:** Continued using wargames to practice investigation and command-line thinking.
+
+**What I learned:** Consistent practice helps build confidence with unfamiliar systems and security puzzles.
+
+## Currently learning
 
 - Intrusion detection fundamentals
 - Snort concepts
@@ -53,11 +47,11 @@ What I learned: Consistent practice helps build confidence with unfamiliar syste
 - Application-layer protections
 - Security monitoring vocabulary
 
-## `echo $BIGGEST_TAKEAWAY`
+## Biggest takeaway
 
 The biggest takeaway this week was that monitoring gives defenders visibility. Tools like intrusion detection systems help turn raw network activity into signals that can be investigated.
 
-## `next --focus`
+## Next focus
 
 - Continue monitoring-focused lab work.
 - Study defender decision-making after suspicious activity appears.
