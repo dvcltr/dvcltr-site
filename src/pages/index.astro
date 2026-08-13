@@ -9,7 +9,7 @@ const posts = (await getCollection('status'))
 ---
 
 <BaseLayout>
-  <section class="hero">
+  <section class="hero hero-simple">
     <div class="hero-text">
       <p class="eyebrow">Weekly learning log</p>
       <h1>A weekly log of projects, labs, and lessons learned.</h1>
@@ -22,21 +22,6 @@ const posts = (await getCollection('status'))
         <a class="btn secondary" href="/status/">View full archive</a>
       </div>
     </div>
-
-    <aside class="hero-panel" aria-label="Learning overview">
-      <div class="trail-card">
-        <h2>Learning map</h2>
-        <div class="trail-item">Secure network engineering</div>
-        <div class="trail-item">Intrusion detection and monitoring</div>
-        <div class="trail-item">VPN security and visibility</div>
-        <div class="trail-item">Hands-on practice and documentation</div>
-      </div>
-      <div class="ticket">
-        <small>current archive</small>
-        <strong>{posts.length} recent updates</strong>
-        <small>reviewed before publishing</small>
-      </div>
-    </aside>
   </section>
 
   <section id="degree" class="degree-progress">

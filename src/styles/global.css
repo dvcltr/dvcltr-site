@@ -120,6 +120,13 @@ a:hover { text-decoration: underline; }
   padding: clamp(56px, 8vw, 108px) 0 62px;
 }
 
+.hero-simple {
+  grid-template-columns: 1fr;
+  padding-bottom: clamp(42px, 6vw, 72px);
+}
+
+.hero-simple .hero-text { max-width: 940px; }
+
 .hero-text { max-width: 860px; }
 
 .eyebrow {
@@ -169,83 +176,6 @@ a:hover { text-decoration: underline; }
 .btn:hover { transform: translateY(-2px); text-decoration: none; }
 .btn.primary { background: var(--orange); color: var(--paper); box-shadow: 5px 5px 0 rgba(74, 47, 33, 0.16); }
 .btn.secondary { border: 1px solid var(--line); color: var(--brown); background: rgba(255, 247, 231, 0.62); }
-
-.hero-panel {
-  position: relative;
-  min-height: 475px;
-  overflow: hidden;
-  border-radius: 34px;
-  background: var(--brown);
-  color: var(--paper);
-  padding: 28px;
-  box-shadow: var(--shadow);
-}
-.hero-panel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.42;
-  background:
-    radial-gradient(circle at 70% 20%, rgba(216, 165, 71, 0.36), transparent 22%),
-    repeating-linear-gradient(115deg, transparent 0 28px, rgba(255, 255, 255, 0.045) 28px 29px);
-}
-
-.trail-card {
-  position: relative;
-  border-radius: 24px;
-  background: var(--paper);
-  color: var(--ink);
-  padding: 24px;
-  box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.18);
-  transform: rotate(1.5deg);
-}
-.trail-card h2 {
-  margin: 0 0 14px;
-  font-family: var(--serif);
-  font-size: 2.15rem;
-  line-height: 1;
-  letter-spacing: -0.05em;
-}
-.trail-item {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 10px;
-  margin: 13px 0;
-  color: var(--muted);
-  font-weight: 650;
-}
-.trail-item::before {
-  content: '';
-  width: 14px;
-  height: 14px;
-  margin-top: 5px;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  background: var(--avocado);
-}
-.trail-item:nth-child(odd)::before { background: var(--orange); }
-
-.ticket {
-  position: absolute;
-  left: 26px;
-  bottom: 26px;
-  width: 230px;
-  border: 2px dashed rgba(255, 247, 231, 0.85);
-  border-radius: 18px;
-  background: var(--avocado);
-  color: var(--paper);
-  padding: 18px;
-  transform: rotate(-4deg);
-}
-.ticket small {
-  display: block;
-  opacity: 0.8;
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.ticket strong { display: block; margin: 5px 0; font-family: var(--serif); font-size: 1.55rem; line-height: 1; }
 
 .section-head {
   display: flex;
@@ -447,7 +377,6 @@ a:hover { text-decoration: underline; }
   .hero,
   .learning-grid,
   .post-shell { grid-template-columns: 1fr; }
-  .hero-panel { min-height: 560px; }
   .status-list { grid-template-columns: 1fr 1fr; }
   .course-track { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
@@ -461,5 +390,4 @@ a:hover { text-decoration: underline; }
   .grid,
   .status-list { grid-template-columns: 1fr; }
   .course-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ticket { position: relative; left: auto; bottom: auto; width: 100%; margin-top: 22px; transform: none; }
 }
