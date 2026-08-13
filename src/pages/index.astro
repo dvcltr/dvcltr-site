@@ -6,7 +6,7 @@ import TerminalWindow from '../components/TerminalWindow.astro';
 const posts = (await getCollection('status'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 6);
 ---
 
 <BaseLayout>
@@ -47,6 +47,7 @@ const posts = (await getCollection('status'))
     </div>
 
     <h2 class="command-heading">ls status/</h2>
+    <p class="section-note">Showing the latest six weekly status updates. <a href="/status/">View the full archive</a>.</p>
     <div class="status-list">
       {posts.map((post) => (
         <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>

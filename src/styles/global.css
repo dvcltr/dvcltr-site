@@ -99,6 +99,9 @@ a:hover { text-decoration: underline; }
 }
 .command-heading::before { content: './'; color: var(--green-soft); }
 
+.section-note { color: var(--muted); margin: -6px 0 16px; font-size: .9rem; }
+.section-note a { color: var(--green); }
+
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .card {
   border: 1px solid var(--line-soft);
