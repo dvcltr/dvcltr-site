@@ -232,22 +232,16 @@ def generate_markdown(now: dt.datetime, completed: list[AssignmentItem], upcomin
         "draft: false",
         "---",
         "",
-        "## `weekly_status --public`",
-        "",
         "This week’s progress update covers projects completed, labs practiced, and what I am learning next.",
         "",
-        "```text",
-        f"student@dvcltr:~$ status --week {end.isoformat()}",
-        "```",
-        "",
-        "## `./completed_this_week`",
+        "## Completed this week",
         "",
     ]
 
     if visible_items:
         seen = set()
         for item in visible_items:
-            title2, focus, _summary, _takeaway = normalize_topic(item.name)
+            _title, focus, _summary, _takeaway = normalize_topic(item.name)
             bullet = f"- {item.status.title()} work related to {focus.lower()}."
             if bullet not in seen:
                 lines.append(bullet)
@@ -256,7 +250,7 @@ def generate_markdown(now: dt.datetime, completed: list[AssignmentItem], upcomin
         lines.append("- No new submitted Canvas work was found in the selected weekly window.")
         lines.append("- Continued reviewing course concepts and preparing for upcoming work.")
 
-    lines += ["", "## `ls projects/`", ""]
+    lines += ["", "## Projects", ""]
     if visible_items:
         used_titles = {}
         for item in visible_items:
@@ -264,16 +258,24 @@ def generate_markdown(now: dt.datetime, completed: list[AssignmentItem], upcomin
             used_titles[title2] = used_titles.get(title2, 0) + 1
             display = title2 if used_titles[title2] == 1 else f"{title2} #{used_titles[title2]}"
             lines += [
-                "```text",
-                f"[{item.status}] {display}",
-                f"Focus: {focus}",
-                f"Summary: {summ}",
-                f"What I learned: {takeaway}",
-                "```",
+                f"### {display}",
+                f"**Focus:** {focus}",
+                "",
+                f"**Summary:** {summ}",
+                "",
+                f"**What I learned:** {takeaway}",
                 "",
             ]
     else:
-        lines += ["```text", "[IN PROGRESS] Course Review", "Focus: Continued Learning", "Summary: Reviewed course material and prepared for the next set of assignments.", "What I learned: Consistency matters when building technical skills over time.", "```", ""]
+        lines += [
+            "### Course Review",
+            "**Focus:** Continued Learning",
+            "",
+            "**Summary:** Reviewed course material and prepared for the next set of assignments.",
+            "",
+            "**What I learned:** Consistency matters when building technical skills over time.",
+            "",
+        ]
 
     learning = []
     for item in visible_items:
@@ -285,16 +287,16 @@ def generate_markdown(now: dt.datetime, completed: list[AssignmentItem], upcomin
     if not learning:
         learning = ["Cybersecurity coursework", "Technical documentation", "Project-based learning"]
 
-    lines += ["## `cat currently_learning.txt`", ""]
+    lines += ["## Currently learning", ""]
     lines += [f"- {x}" for x in learning[:7]]
 
     lines += [
         "",
-        "## `echo $BIGGEST_TAKEAWAY`",
+        "## Biggest takeaway",
         "",
         "The biggest takeaway this week was that steady hands-on practice helps connect course concepts to practical cybersecurity skills.",
         "",
-        "## `next --focus`",
+        "## Next focus",
         "",
     ]
     if upcoming:
