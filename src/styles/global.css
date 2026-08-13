@@ -321,6 +321,69 @@ a:hover { text-decoration: underline; }
   font-weight: 750;
 }
 
+.degree-progress { margin-top: 14px; }
+.progress-card {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: rgba(255, 247, 231, 0.76);
+  box-shadow: var(--shadow);
+  padding: clamp(22px, 4vw, 34px);
+}
+.progress-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  color: var(--muted);
+}
+.progress-summary strong {
+  color: var(--cocoa);
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+.degree-bar {
+  position: relative;
+  height: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(74, 47, 33, 0.12);
+  box-shadow: inset 0 2px 7px rgba(74, 47, 33, 0.12);
+}
+.degree-fill {
+  position: absolute;
+  inset-block: 0;
+  display: block;
+}
+.degree-fill.completed { left: 0; background: var(--avocado); }
+.degree-fill.current { background: var(--orange); }
+.course-track {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+.course-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: rgba(255, 247, 231, 0.72);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+.course-pill.done { background: rgba(104, 120, 66, 0.16); color: #47542c; border-color: rgba(104, 120, 66, 0.32); }
+.course-pill.current { background: var(--orange); color: var(--paper); border-color: var(--orange-dark); box-shadow: 4px 4px 0 rgba(74, 47, 33, 0.12); }
+.progress-note { margin: 16px 0 0; color: var(--muted); }
+
 .learning-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 16px; margin-top: 52px; }
 .note-panel {
   border-radius: 28px;
@@ -386,6 +449,7 @@ a:hover { text-decoration: underline; }
   .post-shell { grid-template-columns: 1fr; }
   .hero-panel { min-height: 560px; }
   .status-list { grid-template-columns: 1fr 1fr; }
+  .course-track { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
 @media (max-width: 620px) {
@@ -396,5 +460,6 @@ a:hover { text-decoration: underline; }
   .page-heading h1 { font-size: clamp(3rem, 17vw, 5rem); }
   .grid,
   .status-list { grid-template-columns: 1fr; }
+  .course-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ticket { position: relative; left: auto; bottom: auto; width: 100%; margin-top: 22px; transform: none; }
 }

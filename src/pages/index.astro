@@ -39,6 +39,38 @@ const posts = (await getCollection('status'))
     </aside>
   </section>
 
+  <section id="degree" class="degree-progress">
+    <div class="section-head">
+      <h2>Degree progress</h2>
+      <p>Ten-course CYBR track. CYBR-501, CYBR-502, and CYBR-506 are complete; CYBR-508 is currently wrapping up.</p>
+    </div>
+
+    <div class="progress-card">
+      <div class="progress-summary">
+        <span class="status-meta">Completed courses</span>
+        <strong>3 / 10</strong>
+        <span>40% through the track with CYBR-508 in progress.</span>
+      </div>
+      <div class="degree-bar" aria-label="Degree progress: 3 courses completed, CYBR-508 in progress, 6 courses upcoming">
+        <span class="degree-fill completed" style="width: 30%;"></span>
+        <span class="degree-fill current" style="left: 30%; width: 10%;"></span>
+      </div>
+      <div class="course-track" aria-label="CYBR course sequence">
+        <span class="course-pill done">CYBR-501</span>
+        <span class="course-pill done">CYBR-502</span>
+        <span class="course-pill upcoming">CYBR-503</span>
+        <span class="course-pill upcoming">CYBR-504</span>
+        <span class="course-pill done">CYBR-506</span>
+        <span class="course-pill current">CYBR-508</span>
+        <span class="course-pill upcoming">CYBR-510</span>
+        <span class="course-pill upcoming">CYBR-512</span>
+        <span class="course-pill upcoming">CYBR-514</span>
+        <span class="course-pill upcoming">CYBR-516</span>
+      </div>
+      <p class="progress-note">CYBR-501 and CYBR-502 came first; the remaining courses follow the program rotation based on start date.</p>
+    </div>
+  </section>
+
   <section id="projects">
     <div class="section-head">
       <h2>Project areas</h2>
