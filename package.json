@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "status:dry-run": "python3 scripts/canvas_weekly_status.py --dry-run",
+    "status:pr": "python3 scripts/canvas_weekly_status.py --pr"
   },
   "dependencies": {
     "astro": "^7.2.1"
