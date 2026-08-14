@@ -14,7 +14,7 @@ const posts = (await getCollection('status'))
     <p>Public, privacy-safe updates on coursework, cybersecurity labs, and current school learning.</p>
   </section>
 
-  <div class="status-list archive-list">
+  <div class="status-list archive-list school-status-list">
     {posts.map((post) => (
       <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
         <div class="status-meta">

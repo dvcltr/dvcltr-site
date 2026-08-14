@@ -362,6 +362,7 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
 }
 .featured-status { min-height: auto; }
 .paired-status-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.school-status-list { grid-template-columns: 1fr; }
 .page-section-tight { margin-top: clamp(28px, 5vw, 52px); }
 .archive-note { margin: 18px 0 0; color: var(--muted); }
 .archive-note a { font-weight: 800; }
