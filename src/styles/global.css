@@ -534,6 +534,9 @@ html[data-theme='dark'] .theme-toggle-thumb { left: 33px; background: var(--gold
   box-shadow: var(--shadow);
   padding: clamp(24px, 4vw, 36px);
 }
+.project-feature + .project-feature { margin-top: 20px; }
+.project-feature.lab-portfolio { grid-template-columns: 1fr; }
+.lab-portfolio .project-actions { justify-content: flex-start; }
 .project-feature h3 {
   margin: 12px 0 14px;
   color: var(--heading);
