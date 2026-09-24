@@ -33,21 +33,16 @@ const latestProject = projectPosts[0];
 
   <section class="numbered-section" id="work">
     <div class="section-grid">
-      <p class="kicker">02 / Selected work</p>
+      <p class="kicker">02 / Projects</p>
       <div>
-        <div class="filter-list" aria-label="Filter selected work">
-          <button class="active" type="button" data-filter="all">All</button>
-          <button type="button" data-filter="build">Builds</button>
-          <button type="button" data-filter="lab">Labs</button>
-        </div>
         <div class="work-list">
-          <a class="work-row" data-kind="build" href="/projects/cipherstone-lab/">
-            <h2>Cipherstone Lab</h2><p>Browser cyber range</p><span>Next.js / 2026</span><b>↗</b>
-          </a>
-          <a class="work-row" data-kind="build" href="/projects/always-on-hermes/">
+          <a class="work-row" href="/projects/always-on-hermes/">
             <h2>Always-on Hermes</h2><p>Private AI infrastructure</p><span>Proxmox / 2026</span><b>↗</b>
           </a>
-          <a class="work-row" data-kind="lab" href="/projects/vulnerable-lab-environment/">
+          <a class="work-row" href="/projects/cipherstone-lab/">
+            <h2>Cipherstone Lab</h2><p>Browser cyber range</p><span>Next.js / 2026</span><b>↗</b>
+          </a>
+          <a class="work-row" href="/projects/vulnerable-lab-environment/">
             <h2>Vulnerable Lab Environment</h2><p>Hands-on security practice</p><span>Lab portfolio / Ongoing</span><b>↗</b>
           </a>
         </div>
@@ -88,16 +83,4 @@ const latestProject = projectPosts[0];
       </div>
     </div>
   </section>
-
-  <script is:inline>
-    document.querySelectorAll('[data-filter]').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('[data-filter]').forEach((item) => item.classList.remove('active'));
-        button.classList.add('active');
-        document.querySelectorAll('[data-kind]').forEach((item) => {
-          item.style.display = button.dataset.filter === 'all' || item.dataset.kind === button.dataset.filter ? 'grid' : 'none';
-        });
-      });
-    });
-  </script>
 </BaseLayout>
