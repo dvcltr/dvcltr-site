@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const experience = [
+  {
+    dates: 'Apr 2024 — Oct 2025',
+    location: 'Norfolk, VA',
+    title: 'Information Systems Security Manager',
+    summary: 'Led assessment and authorization work for two enterprise networks. Translated security gaps and residual risk into clear recommendations while directing authorization evidence, continuous monitoring, and remediation priorities.',
+  },
+  {
+    dates: 'May 2022 — Feb 2024',
+    location: 'Bahrain',
+    title: 'Telecommunications Operations Watch Officer',
+    summary: 'Directed around-the-clock secure telecommunications for deployed forces and led a multidisciplinary technical team. Coordinated incident response, readiness exercises, and a Microsoft 365 migration serving 700 users.',
+  },
+  {
+    dates: 'Mar 2020 — May 2022',
+    location: 'Bahrain',
+    title: 'Senior Enlisted Advisor · Communications Officer · ISSM',
+    summary: 'Advised senior leadership on operations, cybersecurity risk, and personnel readiness. Led vulnerability scanning and remediation across five information systems, reducing critical findings while maintaining mission availability.',
+  },
+  {
+    dates: 'Feb 2017 — Mar 2020',
+    location: 'San Diego, CA',
+    title: 'Lead Systems Analyst',
+    summary: 'Led integration and security testing for tactical systems across shipboard environments. Developed test plans and operating procedures, applied security guidance, and supported thousands of fleet IT service requests.',
+  },
+  {
+    dates: '2004 — 2017',
+    location: 'Italy · Afghanistan · Iraq',
+    title: 'Communications & Cybersecurity Leadership',
+    summary: 'Progressed through afloat, shore, and joint assignments supporting secure communications and information security. Led technical teams, coordinated with partner organizations, and trained personnel in communications, COMSEC, and cybersecurity operations.',
+  },
+];
+---
+
+<BaseLayout title="About | Dave Coulter" description="About Dave Coulter—a cybersecurity engineer, Navy veteran, husband, father, and lifelong technology enthusiast based in San Diego.">
+  <header class="page-heading">
+    <p class="eyebrow">About / San Diego, California</p>
+    <h1>Technical by trade.<br />Curious by nature<span class="signal">.</span></h1>
+    <p>Husband, father, Navy veteran, cybersecurity engineer, and lifelong technology enthusiast.</p>
+  </header>
+
+  <section class="page-section about-intro">
+    <h2>Beyond the<br />terminal.</h2>
+    <div>
+      <p>I have spent two decades working across secure communications, cybersecurity, technical leadership, and hands-on systems engineering. I enjoy translating complicated technical risk into clear decisions—and then getting back into the lab to understand how the systems actually behave.</p>
+      <p>This page is a living introduction. It will grow alongside the personal projects, technology, gadgets, and ideas I am exploring.</p>
+    </div>
+  </section>
+
+  <section class="page-section" id="experience">
+    <div class="section-head">
+      <div><p class="kicker">Selected experience</p><h2>Short résumé</h2></div>
+      <p>Two decades across cybersecurity, secure communications, and technical leadership.</p>
+    </div>
+    <div class="resume-list">
+      {experience.map((role) => (
+        <article class="resume-item">
+          <div class="resume-meta"><div>{role.dates}</div><div>{role.location}</div></div>
+          <h3>{role.title}</h3>
+          <p>{role.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-head"><div><p class="kicker">Education & credentials</p><h2>Foundation</h2></div></div>
+    <div class="credential-list">
+      <article class="credential"><h3>M.S. Cybersecurity Engineering</h3><p>University of San Diego · Expected July 2027</p></article>
+      <article class="credential"><h3>B.S. Cybersecurity Technology</h3><p>University of Maryland Global Campus · March 2024</p></article>
+      <article class="credential"><h3>CompTIA CySA+</h3><p>Cybersecurity Analyst certification · DoD 8570 IAT Level II</p></article>
+    </div>
+  </section>
+</BaseLayout>

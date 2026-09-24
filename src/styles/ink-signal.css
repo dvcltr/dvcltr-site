@@ -40,7 +40,7 @@ main { display: block; }
 
 .home-hero { min-height: calc(100vh - 73px); display: flex; flex-direction: column; justify-content: space-between; padding: clamp(74px, 10vw, 150px) 0 40px; }
 .home-title { margin: 0; max-width: 1200px; font-size: clamp(5.5rem, 14.8vw, 14rem); line-height: .78; letter-spacing: -.09em; }
-.home-title .signal, .page-title .signal { color: var(--signal); }
+.home-title .signal, .page-title .signal, .page-heading h1 .signal, .project-hero h1 .signal { color: var(--signal); }
 .hero-foot { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font: 700 11px/1.2 var(--mono); text-transform: uppercase; }
 .hero-foot b { color: var(--signal); font-size: 24px; vertical-align: middle; }
 
@@ -49,6 +49,10 @@ main { display: block; }
 .kicker, .eyebrow, .status-meta { margin: 0; color: var(--signal); font: 700 11px/1.25 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
 .intro { max-width: 1050px; }
 .intro p { margin: 0; font-size: clamp(2.1rem, 4.8vw, 4.8rem); line-height: 1.03; letter-spacing: -.055em; font-weight: 750; }
+.about-row { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; max-width: 1100px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: padding .2s, color .2s; }
+.about-row:hover { padding-left: 18px; text-decoration: none; }
+.about-row p { margin: 0; font-size: clamp(2.1rem, 4.8vw, 4.8rem); line-height: 1.03; letter-spacing: -.055em; font-weight: 750; }
+.about-row b { font-size: 32px; }
 
 .filter-list { display: flex; gap: 8px; margin: 0 0 24px; flex-wrap: wrap; }
 .filter-list button, .pill-link { border: 1px solid var(--line); background: transparent; color: var(--fg); border-radius: 999px; padding: 9px 14px; cursor: pointer; font: 700 11px/1.2 var(--mono); text-transform: uppercase; }
@@ -116,6 +120,21 @@ main { display: block; }
 .project-copy p, .project-copy li { color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
 .project-copy strong { color: var(--fg); }
 
+.about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 8vw, 120px); }
+.about-intro h2 { margin: 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 1; letter-spacing: -.055em; }
+.about-intro p { margin: 0; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.7; }
+.about-intro p + p { margin-top: 1.25em; }
+.resume-list { border-top: 1px solid var(--line); }
+.resume-item { display: grid; grid-template-columns: minmax(170px, .6fr) 1fr 1.5fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--line); }
+.resume-item .resume-meta { color: var(--signal); font: 700 11px/1.55 var(--mono); letter-spacing: .03em; text-transform: uppercase; }
+.resume-item h3 { margin: 0; font-size: clamp(1.4rem, 2.5vw, 2.4rem); line-height: 1.05; letter-spacing: -.045em; }
+.resume-item p { margin: 0; color: var(--muted); line-height: 1.7; }
+.credential-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.credential { padding: 26px 24px 26px 0; border-bottom: 1px solid var(--line); }
+.credential + .credential { padding-left: 24px; border-left: 1px solid var(--line); }
+.credential h3 { margin: 0 0 10px; font-size: 1.25rem; }
+.credential p { margin: 0; color: var(--muted); }
+
 .school-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 44px; }
 .progress-card { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 0; }
 .progress-summary { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; margin-bottom: 20px; color: var(--muted); }
@@ -155,7 +174,7 @@ main { display: block; }
 @media (max-width: 900px) {
   .site-nav { grid-template-columns: 1fr auto; }
   .site-role, .site-contact { display: none; }
-  .section-grid, .stack-category, .school-grid, .project-feature, .post-shell { grid-template-columns: 1fr; }
+  .section-grid, .stack-category, .school-grid, .project-feature, .post-shell, .about-intro { grid-template-columns: 1fr; }
   .project-actions { justify-content: flex-start; }
   .stack-summary { grid-template-columns: 1fr; }
   .text-link { justify-self: start; }
@@ -177,5 +196,8 @@ main { display: block; }
   .stack-category { gap: 26px; }
   .stack-item { grid-template-columns: 1fr auto; }
   .stack-item p { grid-column: 1 / -1; }
+  .resume-item { grid-template-columns: 1fr; gap: 14px; }
+  .credential-list { grid-template-columns: 1fr; }
+  .credential + .credential { padding-left: 0; border-left: 0; }
   .site-footer { flex-direction: column; }
 }
