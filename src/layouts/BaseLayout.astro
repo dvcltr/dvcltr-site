@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import '../styles/ink-signal.css';
 
 interface Props {
   title?: string;
@@ -7,9 +7,12 @@ interface Props {
 }
 
 const {
-  title = 'dvcltr | School Progress',
-  description = 'A public weekly status log for school projects, cybersecurity labs, and what I am learning.',
+  title = 'Dave Coulter | Cybersecurity Engineer',
+  description = 'Portfolio, projects, schoolwork, homelab notes, and technology from cybersecurity engineer Dave Coulter.',
 } = Astro.props;
+
+const path = Astro.url.pathname;
+const isActive = (prefix: string) => prefix === '/' ? path === '/' : path.startsWith(prefix);
 ---
 
 <!doctype html>
@@ -21,69 +24,23 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;650;750&display=swap" rel="stylesheet" />
-    <script is:inline>
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {}
-      })();
-    </script>
+
   </head>
   <body>
     <div class="site-shell">
-      <nav class="nav" aria-label="Main navigation">
-        <a class="brand" href="/">
-          <span class="brand-mark">dv</span>
-          <span>dvcltr<small>learning log</small></span>
-        </a>
-        <div class="nav-actions">
-          <div class="nav-links">
-            <a href="/#school">School</a>
-            <a href="/projects/">Projects</a>
-            <a href="/status/">School status</a>
-            <a href="/projects/status/">Project status</a>
-          </div>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            type="button"
-            role="switch"
-            aria-checked="false"
-            aria-label="Toggle dark mode"
-            title="Toggle dark mode"
-          >
-            <span class="theme-toggle-track" aria-hidden="true">
-              <span class="ti ti-sun">☀</span>
-              <span class="ti ti-moon">☾</span>
-              <span class="theme-toggle-thumb"></span>
-            </span>
-          </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-brand" href="/" aria-current={isActive('/') ? 'page' : undefined}>DVCLTR.</a>
+        <span class="site-role">Cybersecurity<br />Engineer.</span>
+        <a class="site-contact" href="mailto:dvcltr@gmail.com">dvcltr@gmail.com<br />San Diego, CA</a>
+        <div class="site-links">
+          <a href="/projects/" aria-current={isActive('/projects/') ? 'page' : undefined}>Work</a>
+          <a href="/school/" aria-current={isActive('/school/') || isActive('/status/') ? 'page' : undefined}>School</a>
+          <a href="/stack/" aria-current={isActive('/stack/') ? 'page' : undefined}>Stack</a>
+          <a href="/#about">About</a>
         </div>
       </nav>
-      <slot />
+      <main><slot /></main>
+      <footer class="site-footer"><span>© 2026 DVCLTR</span><span>Built by taking things apart.</span></footer>
     </div>
-    <script is:inline>
-      (function () {
-        var btn = document.getElementById('theme-toggle');
-        if (!btn) return;
-        function sync() {
-          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-          btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
-        }
-        sync();
-        btn.addEventListener('click', function () {
-          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-          var next = isDark ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', next);
-          try { localStorage.setItem('theme', next); } catch (e) {}
-          sync();
-        });
-      })();
-    </script>
   </body>
 </html>

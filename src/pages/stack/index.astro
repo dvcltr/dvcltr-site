@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const categories = [
+  {
+    id: 'hardware', title: 'Hardware & gadgets',
+    items: [
+      ['ThinkPad T490', 'Primary Omarchy workstation', 'In use'],
+      ['ThinkPad X270', 'Omarchy playground and test device', 'Testing'],
+      ['Mac mini', 'Home workstation', 'In use'],
+      ['ZimaBlade', 'Proxmox mini home server', 'In use'],
+    ],
+  },
+  {
+    id: 'security-gadgets', title: 'Security gadgets',
+    items: [
+      ['Muzi Works R1', 'Meshtastic mesh radio', 'Active'],
+      ['LILYGO T-Embed', 'Bruce turns it into a portable security multitool for authorized Wi-Fi assessment, wardriving, and compatible radio or RFID modules.', 'Active'],
+      ['ESP32-C5', 'DIY Biscuit firmware makes this a compact wardriving device with additional Wi-Fi and Bluetooth Low Energy testing tools.', 'Active'],
+      ['OUI-Spy', 'Wireless security device', 'Active'],
+    ],
+  },
+  {
+    id: 'operating-systems', title: 'Operating systems',
+    items: [
+      ['Omarchy', 'Primary Linux desktop', 'Daily'],
+      ['macOS', 'Mac mini home workstation', 'Daily'],
+      ['Windows', 'Coursework and work', 'Active'],
+      ['Debian', 'Server operating system', 'Server'],
+      ['Ubuntu', 'Server operating system', 'Server'],
+      ['Kali · ParrotOS · BlackArch', 'Security lab distributions', 'Lab'],
+    ],
+  },
+  {
+    id: 'security', title: 'Cybersecurity tools',
+    items: [
+      ['Burp Suite', 'Web application security testing', 'Active'],
+      ['Nmap', 'Network discovery and service enumeration', 'Active'],
+      ['Wireshark', 'Packet capture and protocol analysis', 'Active'],
+      ['Metasploit', 'Exploit validation in authorized labs', 'Active'],
+      ['Kali Linux toolset', 'Common offensive security and assessment utilities', 'Lab'],
+      ['Airgeddon', 'Wireless network auditing', 'Occasional'],
+      ['Wifite', 'Automated wireless security auditing', 'Occasional'],
+      ['Wazuh', 'Security monitoring', 'Lab'],
+      ['Labtainer · VulnHub', 'Hands-on practice environments', 'Lab'],
+      ['Metasploitable', 'Vulnerable target environment', 'Lab'],
+    ],
+  },
+  {
+    id: 'homelab', title: 'Homelab & infrastructure',
+    items: [
+      ['Proxmox', 'Virtualization platform', 'Core'],
+      ['Docker', 'Application containers', 'Core'],
+      ['Portainer', 'Container management', 'Core'],
+      ['Tailscale', 'Private networking and remote access', 'Core'],
+      ['Jellyfin', 'Self-hosted media streaming', 'Hosted'],
+      ['Sonarr · Radarr · Prowlarr · Bazarr', 'Media discovery, library, indexer, and subtitle automation', 'Hosted'],
+      ['qBittorrent', 'Download client', 'Hosted'],
+      ['VirtualBox', 'Local security labs', 'Active'],
+    ],
+  },
+  {
+    id: 'development', title: 'Development',
+    items: [
+      ['GitHub', 'Source control and project workflow', 'Daily'],
+      ['Astro', 'Personal site', 'Active'],
+      ['Next.js', 'Interactive web projects', 'Active'],
+      ['Vercel', 'Web deployment', 'Active'],
+    ],
+  },
+  {
+    id: 'ai', title: 'AI tools',
+    items: [
+      ['Hermes Agent', 'Private, always-on AI assistant', 'Daily'],
+      ['ChatGPT', 'Research, ideation, and general assistance', 'Active'],
+      ['Claude', 'Coding and technical collaboration', 'Active'],
+    ],
+  },
+];
+---
+
+<BaseLayout title="Technology Stack | Dave Coulter" description="The evolving hardware, security tools, homelab infrastructure, development platforms, and AI systems used by Dave Coulter.">
+  <header class="page-heading">
+    <p class="eyebrow">Technology stack / Always evolving</p>
+    <h1 class="page-title">Tools of<br />the trade<span class="signal">.</span></h1>
+    <p>The hardware, software, security tools, infrastructure, development platforms, and AI systems I use across work, personal projects, school, and the homelab.</p>
+  </header>
+
+  <nav class="stack-index" aria-label="Technology stack sections">
+    {categories.map((category) => <a class="pill-link" href={`#${category.id}`}>{category.title}</a>)}
+  </nav>
+
+  {categories.map((category) => (
+    <section class="stack-category" id={category.id}>
+      <h2>{category.title}</h2>
+      <div>
+        {category.items.map(([name, description, status]) => (
+          <article class="stack-item">
+            <h3>{name}</h3><p>{description}</p><span class="active-label">{status}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

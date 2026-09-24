@@ -1,6 +1,6 @@
 # dvcltr-site
 
-Terminal-style school progress blog for dvcltr.com.
+Ink & Signal portfolio for dvcltr.com, covering selected work, school progress, technology, and project notes.
 
 ## Commands
 

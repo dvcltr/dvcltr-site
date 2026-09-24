@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const labs = [
+  ['VAmPI', 'Intentionally vulnerable API for practicing API security testing.', 'https://github.com/dvcltr/VAmPI'],
+  ['Damn Vulnerable LLM', 'Hands-on exercises for prompt injection and application-layer LLM security.', 'https://github.com/dvcltr/DamnVulnerableLLMProject'],
+  ['DVAPI', 'A vulnerable API environment for learning discovery and exploitation patterns.', 'https://github.com/dvcltr/DVAPI'],
+  ['Damn Vulnerable DeFi', 'Smart-contract and decentralized-finance security challenges.', 'https://github.com/dvcltr/damn-vulnerable-defi'],
+  ['AzureGoat', 'Intentionally vulnerable Azure environment for cloud security practice.', 'https://github.com/dvcltr/AzureGoat'],
+  ['AWSGoat', 'Intentionally vulnerable AWS environment for cloud security practice.', 'https://github.com/dvcltr/AWSGoat'],
+];
+---
+
+<BaseLayout title="Vulnerable Lab Environment | Dave Coulter" description="A preserved collection of intentionally vulnerable applications and cloud environments for hands-on security practice.">
+  <header class="project-hero">
+    <p class="eyebrow">Selected work / Hands-on security practice</p>
+    <h1>Vulnerable lab<br />environment<span class="signal">.</span></h1>
+    <p class="page-lede">A maintained collection of intentionally vulnerable applications, APIs, smart contracts, and cloud environments used for repeatable hands-on security practice.</p>
+    <div class="project-meta"><span class="badge">Lab portfolio</span><span class="badge">Ongoing</span><span class="badge">Authorized practice</span></div>
+  </header>
+
+  <section class="page-section section-grid">
+    <p class="kicker">01 / Overview</p>
+    <div class="project-copy"><p>These labs keep practical security work separate from production systems. Each environment is intentionally vulnerable, isolated, and used to practice discovery, exploitation, documentation, and remediation in a controlled setting.</p><p>Upstream projects are forked to my GitHub account so the material remains available for future study and can be revisited as my approach and tooling evolve.</p></div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">02 / Lab collection</p>
+    <div class="work-list">
+      {labs.map(([name, description, url]) => (
+        <a class="work-row" href={url} target="_blank" rel="noreferrer"><h2>{name}</h2><p>{description}</p><span>GitHub</span><b>↗</b></a>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">03 / Practice areas</p>
+    <div class="project-copy"><ul><li>API discovery, authentication, authorization, and input validation.</li><li>Prompt injection and application-layer LLM security.</li><li>Smart-contract and decentralized-finance vulnerabilities.</li><li>AWS and Azure misconfiguration and cloud attack paths.</li><li>Repeatable lab setup, evidence collection, and remediation notes.</li></ul></div>
+  </section>
+</BaseLayout>

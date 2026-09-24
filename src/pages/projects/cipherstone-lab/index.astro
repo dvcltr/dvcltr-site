@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Cipherstone Lab | Dave Coulter" description="Cipherstone Lab is a browser-based cyber range for practicing beginner Linux, networking, enumeration, and security reasoning.">
+  <header class="project-hero">
+    <p class="eyebrow">Selected work / Browser cyber range</p>
+    <h1>Cipherstone<br />Lab<span class="signal">.</span></h1>
+    <p class="page-lede">An interactive, browser-based terminal game where beginner analysts explore a compromised university network and learn by investigating it.</p>
+    <div class="project-hero-actions">
+      <a class="btn primary" href="https://cipherstone-cyber-range.vercel.app" target="_blank" rel="noreferrer">Play the game ↗</a>
+      <a class="btn" href="https://github.com/dvcltr/cipherstone-cyber-range" target="_blank" rel="noreferrer">View source ↗</a>
+    </div>
+    <div class="project-meta"><span class="badge">Browser cyber range</span><span class="badge">2026</span><span class="badge">In development</span></div>
+  </header>
+
+  <section class="page-section section-grid">
+    <p class="kicker">01 / Overview</p>
+    <div class="project-copy">
+      <p>Cipherstone University is a fictional, authorized training environment presented through a realistic terminal interface. Players begin as a student cyber analyst and move through a small network by reading help text, exploring hosts, mapping discoveries, and reasoning about credentials and access.</p>
+      <p>The first scenario asks the player to reach a simulated registrar database and alter a grade, then reframes the result through a debrief about integrity, access control, credential reuse, and the real-world consequences of unauthorized changes.</p>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">02 / What players practice</p>
+    <div class="project-copy">
+      <ul>
+        <li>Linux-style navigation and command discovery through realistic syntax and <code>--help</code>.</li>
+        <li>Host and service enumeration across a small simulated network.</li>
+        <li>Building a mental and visual map from partial information.</li>
+        <li>Credential reasoning, reuse, and light privilege escalation.</li>
+        <li>Connecting offensive actions to defensive remediation during the final debrief.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">03 / Development notes</p>
+    <div class="project-copy">
+      <p>The experience is designed around the feeling of mapping a cave with a flashlight: each command reveals only enough information to suggest the next question. The first iteration avoids decoy hosts and unnecessary dead ends so new learners can focus on forming a repeatable investigation process.</p>
+      <p>Progress is saved in the browser, levels are defined as structured scenario data, and each simulated host has its own filesystem, permissions, users, and discoverable evidence.</p>
+    </div>
+  </section>
+</BaseLayout>

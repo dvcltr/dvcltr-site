@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('status'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Schoolwork | Dave Coulter" description="Cybersecurity engineering graduate coursework, progress, and public learning notes from Dave Coulter.">
+  <header class="page-heading">
+    <p class="eyebrow">Schoolwork / Cybersecurity engineering</p>
+    <h1>Learning by<br />doing<span class="signal">.</span></h1>
+    <p>Public, privacy-safe notes from my MS in Cybersecurity Engineering, including coursework progress, lab work, and what I am learning along the way.</p>
+  </header>
+
+  <section class="page-section school-grid">
+    <div>
+      <p class="kicker">Degree progress</p>
+      <article class="progress-card">
+        <div class="progress-summary"><span>Completed courses</span><strong>4 / 10</strong></div>
+        <div class="degree-bar" aria-label="Degree progress: 4 courses completed, CYBR-510 in progress, 5 courses upcoming">
+          <span class="degree-fill completed" style="width: 40%;"></span>
+          <span class="degree-fill current" style="left: 40%; width: 10%;"></span>
+        </div>
+        <div class="course-track" aria-label="CYBR course sequence">
+          <span class="course-pill done">CYBR-501</span><span class="course-pill done">CYBR-502</span>
+          <span class="course-pill upcoming">CYBR-503</span><span class="course-pill upcoming">CYBR-504</span>
+          <span class="course-pill done">CYBR-506</span><span class="course-pill done">CYBR-508</span>
+          <span class="course-pill current">CYBR-510</span><span class="course-pill upcoming">CYBR-512</span>
+          <span class="course-pill upcoming">CYBR-514</span><span class="course-pill upcoming">CYBR-516</span>
+        </div>
+      </article>
+    </div>
+    <div>
+      <p class="kicker">Current focus</p>
+      <div class="project-copy"><p>Hands-on cybersecurity engineering work spanning network analysis, vulnerable environments, technical documentation, and applied defensive and offensive security concepts.</p></div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-head"><h2>School status</h2><p>Weekly progress updates and lab notes.</p></div>
+    <div class="archive-list school-status-list">
+      {posts.map((post) => (
+        <a class="status-item" href={`/status/${post.id.replace(/\.md$/, '')}/`}>
+          <div class="status-meta">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}{post.data.course ? ` · ${post.data.course}` : ''}</div>
+          <h2>{post.data.title}</h2><p>{post.data.summary}</p>
+          <div class="badges">{post.data.tags.map((tag) => <span class="badge">{tag}</span>)}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

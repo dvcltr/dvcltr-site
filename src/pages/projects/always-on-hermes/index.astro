@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Always-on Hermes | Dave Coulter" description="A private, always-on Hermes Agent deployment running in a Debian VM on a Proxmox homelab.">
+  <header class="project-hero">
+    <p class="eyebrow">Selected work / Private AI infrastructure</p>
+    <h1>Always-on<br />Hermes<span class="signal">.</span></h1>
+    <p class="page-lede">A workstation-bound AI agent moved into a private, always-on Debian virtual machine while preserving local desktop control and keeping every remote service off the public internet.</p>
+    <div class="project-hero-actions"><a class="btn primary" href="/projects/status/2026-09-24-always-on-hermes-proxmox/">Read the full build notes →</a></div>
+    <div class="project-meta"><span class="badge">Proxmox</span><span class="badge">Debian</span><span class="badge">Tailscale</span><span class="badge">2026</span></div>
+  </header>
+
+  <section class="page-section section-grid">
+    <p class="kicker">01 / Overview</p>
+    <div class="project-copy"><p>Hermes originally ran only on my Omarchy workstation. I moved its persistent services into a Debian VM on Proxmox so scheduled work, messaging, and remote sessions can continue when the workstation is unavailable.</p><p>The workstation retains a separate local installation for tasks that need direct access to Omarchy, desktop applications, and local files. Tailscale provides the private network boundary between both environments.</p></div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">02 / What the project solved</p>
+    <div class="project-copy"><ul><li>Preserved conversations, memory, skills, scheduled jobs, source files, Git history, untracked work, and project configuration.</li><li>Separated durable state from regenerable dependencies, caches, environments, and build output.</li><li>Moved messaging through a rollback-safe cutover without running duplicate gateways.</li><li>Kept dashboards, backends, SSH, and integrations private through Tailscale and least-privilege access.</li><li>Retained the local Hermes installation for machine-specific desktop work.</li></ul></div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">03 / Development notes</p>
+    <div class="project-copy"><p>The migration was treated as an infrastructure project rather than a file copy. Every major step had a rollback path, and verification checked application state, adapter connectivity, database integrity, permissions, and real outbound delivery—not just whether a process appeared to be running.</p><p>The resulting pattern now guides future homelab integrations: private networking, dedicated credentials, tightly constrained operations, structured health checks, and no public exposure.</p></div>
+  </section>
+</BaseLayout>
