@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Omarchy CIS Hardening | Dave Coulter"
+  description="Adapting ten CIS Debian Linux security recommendations to an Arch-based Omarchy workstation with rollback, baseline scanning, verification, and final analysis."
+>
+  <header class="project-hero">
+    <p class="eyebrow">Workstation security</p>
+    <h1>Omarchy CIS<br />hardening<span class="signal">.</span></h1>
+    <p class="page-lede">A practical adaptation of ten CIS Linux security recommendations for the Arch-based workstation I use every day.</p>
+    <div class="project-meta">
+      <span class="badge">Omarchy</span>
+      <span class="badge">Arch Linux</span>
+      <span class="badge">CIS Benchmark</span>
+      <span class="badge">Lynis</span>
+      <span class="badge">2026</span>
+    </div>
+  </header>
+
+  <section class="audit-panel" aria-labelledby="audit-title">
+    <div class="audit-panel-bar">
+      <span id="audit-title">Hardening audit // verified results</span>
+      <span><i aria-hidden="true"></i> Complete</span>
+    </div>
+    <div class="audit-metrics">
+      <div><span>Selected controls</span><strong>10</strong><small>implemented</small></div>
+      <div><span>Verification checks</span><strong>20</strong><small>passed</small></div>
+      <div><span>Lynis index</span><strong>69 → 71</strong><small>baseline to final</small></div>
+      <div><span>Suggestions</span><strong>33 → 29</strong><small>four removed</small></div>
+    </div>
+    <div class="audit-panel-footer"><span>Warnings: 0</span><span>Tests: 244</span><span>Rollback retained</span></div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">01 / Why this system</p>
+    <div class="project-copy">
+      <p>Instead of creating a throwaway virtual machine that I would probably never use again, I completed the assignment on my own Arch-based Omarchy workstation. This gave me a reason to learn more about the security controls, configuration layers, and recovery options on the system I use every day.</p>
+      <p>The assigned benchmark targets Debian, so the goal was not to copy commands blindly or claim full CIS compliance. Each selected recommendation had to be evaluated, translated to the right Arch or Omarchy mechanism, and tested without breaking normal workstation use.</p>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">02 / Approach</p>
+    <div class="project-copy">
+      <ul>
+        <li>Created a Snapper recovery point and documented both targeted and full rollback paths.</li>
+        <li>Ran a privileged Lynis audit to establish a repeatable security baseline.</li>
+        <li>Mapped ten applicable CIS Debian recommendations to Omarchy's Arch-based configuration.</li>
+        <li>Captured the noncompliant state before making changes.</li>
+        <li>Applied one controlled hardening set covering kernel settings, core dumps, login banners, protocol modules, and sudo behavior.</li>
+        <li>Verified every control independently, checked system health, and repeated the full Lynis scan.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">03 / Controls</p>
+    <div class="project-copy">
+      <p>The ten selected controls restricted core dumps, disabled three unused network protocol modules, enabled recommended IPv4 security settings, replaced the information-revealing login banner, and shortened the cached sudo authentication period.</p>
+      <p>The implementation used native configuration drop-ins instead of editing distribution-owned files. That kept the changes easy to inspect, test, and remove while respecting the way systemd, modprobe, PAM, and sudo combine configuration from multiple locations.</p>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">04 / Results</p>
+    <div class="project-copy">
+      <p>All ten selected controls passed the final audit. An assertion-based verifier produced twenty passing checks, Lynis reported zero warnings, the hardening index increased from 69 to 71, and the suggestion count fell from 33 to 29.</p>
+      <p>Network routing, the private Tailscale connection, the host firewall, sudo configuration, and systemd service health remained normal after the changes. The final report preserves the procedure, before-and-after evidence, analysis, limitations, and recovery instructions so another researcher could reproduce the experiment.</p>
+    </div>
+  </section>
+
+  <section class="page-section section-grid">
+    <p class="kicker">05 / What I learned</p>
+    <div class="project-copy">
+      <p>A benchmark written for one Linux distribution can still provide useful guidance on another, but only when the intent of each control is separated from the distribution-specific command used to implement it. Package names, file locations, PAM layout, boot tooling, and configuration precedence all required verification.</p>
+      <p>The project also reinforced that a scanner score is supporting evidence, not proof of compliance. The stronger result came from combining a rollback plan, preserved baseline data, direct control assertions, operational health checks, and an identical final scan.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .audit-panel {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--signal) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(color-mix(in srgb, var(--signal) 4%, transparent) 1px, transparent 1px),
+      var(--surface);
+    background-size: 32px 32px;
+  }
+
+  .audit-panel-bar,
+  .audit-panel-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 16px;
+    color: var(--muted);
+    font: 700 10px/1.2 var(--mono);
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .audit-panel-bar { border-bottom: 1px solid var(--line); }
+  .audit-panel-footer { border-top: 1px solid var(--line); }
+  .audit-panel-bar span:first-child { color: var(--fg); }
+
+  .audit-panel-bar i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 12px var(--signal);
+  }
+
+  .audit-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .audit-metrics > div {
+    display: flex;
+    min-height: 190px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    border-right: 1px solid var(--line);
+  }
+
+  .audit-metrics > div:last-child { border-right: 0; }
+  .audit-metrics span,
+  .audit-metrics small { color: var(--muted); font: 700 10px/1.3 var(--mono); text-transform: uppercase; }
+  .audit-metrics strong { margin: 10px 0; color: var(--signal); font-size: clamp(2.25rem, 5vw, 4.8rem); line-height: .9; letter-spacing: -.06em; }
+
+  @media (max-width: 800px) {
+    .audit-metrics { grid-template-columns: 1fr 1fr; }
+    .audit-metrics > div { min-height: 150px; }
+    .audit-metrics > div:nth-child(2) { border-right: 0; }
+    .audit-metrics > div:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+    .audit-panel-footer { flex-direction: column; gap: 6px; }
+  }
+
+  @media (max-width: 480px) {
+    .audit-metrics { grid-template-columns: 1fr; }
+    .audit-metrics > div { min-height: 128px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .audit-metrics > div:last-child { border-bottom: 0; }
+    .audit-panel-bar { align-items: flex-start; }
+  }
+</style>
